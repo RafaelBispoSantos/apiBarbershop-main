@@ -1,7 +1,7 @@
 # 💈 BarberApp API
 
 <div align="center">
-  <img src="https://res.cloudinary.com/dmhyzqdp9/image/upload/v1744490361/Gemini_Generated_Image_ezsmgrezsmgrezsm_vxtpif.jpg" alt="Logo BarberApp API" width="120px" height="120px" />
+  <img src="https://res.cloudinary.com/dmhyzqdp9/image/upload/v1744490361/Gemini_Generated_Image_ezsmgrezsmgrezsm_vxtpif.jpg" alt="Logo BarberApp API" width="240px" height="240px" />
   
   <p align="center">
     <strong>API RESTful para gerenciamento de barbearias</strong>
