@@ -1,16 +1,33 @@
 const express = require('express');
-const barbeiroRoutes = require('./barbeiroRoutes');
+const authRoutes = require('./authRoutes');
+const usuarioRoutes = require('./usuarioRoutes');
+const estabelecimentoRoutes = require('./estabelecimentoRoutes');
 const servicoRoutes = require('./servicoRoutes');
-const clienteRoutes = require('./clienteRoutes');
 const agendamentoRoutes = require('./agendamentoRoutes');
-const authRoutes = require('./authRoutes'); // Adicione esta linha
+const assinaturaRoutes = require('./assinaturaRoutes');
+const adminRoutes = require('./adminRoutes');
+const { authMiddleware } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.use('/auth', authRoutes); // Adicione esta linha
-router.use('/barbeiros', barbeiroRoutes);
-router.use('/servicos', servicoRoutes);
-router.use('/clientes', clienteRoutes);
-router.use('/agendamentos', agendamentoRoutes);
+// Rotas públicas
+router.use('/auth', authRoutes);
+
+// Rotas protegidas (requerem autenticação)
+router.use('/usuarios', authMiddleware, usuarioRoutes);
+router.use('/estabelecimentos', estabelecimentoRoutes);
+router.use('/servicos', authMiddleware, servicoRoutes);
+router.use('/agendamentos', authMiddleware, agendamentoRoutes);
+router.use('/assinaturas', authMiddleware, assinaturaRoutes);
+router.use('/admin', authMiddleware, adminRoutes);
+
+// Rota para verificar o estado da API
+router.get('/status', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'API do SaaS para Barbearias funcionando corretamente',
+    timestamp: new Date()
+  });
+});
 
 module.exports = router;
